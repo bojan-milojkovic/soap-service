@@ -10,8 +10,6 @@ import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
 
 @Configuration
 @EnableWs
@@ -26,14 +24,9 @@ public class WSConfig extends WsConfigurerAdapter {
 	}
 	
 	@Bean(name = "articles")
-	public Wsdl11Definition defaultWsdl11Definition(XsdSchema articlesSchema) {
+	public Wsdl11Definition defaultWsdl11Definition() {
 		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
         wsdl11Definition.setWsdl(new ClassPathResource("/wsdl/articles.wsdl")); //your wsdl location
         return wsdl11Definition;
-	}
-	
-	@Bean
-	public XsdSchema articlesSchema() {
-		return new SimpleXsdSchema(new ClassPathResource("wsdl/articles.xsd"));
 	}
 }

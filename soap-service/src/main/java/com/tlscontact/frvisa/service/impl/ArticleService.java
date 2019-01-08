@@ -1,13 +1,15 @@
 package com.tlscontact.frvisa.service.impl;
 
 import java.util.List;
+import javax.jws.WebService;
+import javax.xml.ws.BindingType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.tlscontact.frvisa.entity.Article;
 import com.tlscontact.frvisa.repository.ArticleRepository;
 import com.tlscontact.frvisa.service.IArticleService;
 
-@Service
+@WebService(targetNamespace="http://com.tlscontact/frvisa")
+@BindingType(javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING)
 public class ArticleService implements IArticleService {
 	
 	@Autowired
