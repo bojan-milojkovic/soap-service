@@ -5,10 +5,11 @@ import javax.jws.WebService;
 import javax.xml.ws.BindingType;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.tlscontact.frvisa.entity.Article;
+import com.tlscontact.frvisa.generated.GetArticleByIdRequest;
 import com.tlscontact.frvisa.repository.ArticleRepository;
 import com.tlscontact.frvisa.service.IArticleService;
 
-@WebService(targetNamespace="http://com.tlscontact/frvisa")
+@WebService(endpointInterface="com.tlscontact.frvisa.service.IArticleService", targetNamespace="http://com.tlscontact/frvisa")
 @BindingType(javax.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING)
 public class ArticleService implements IArticleService {
 	
@@ -16,8 +17,8 @@ public class ArticleService implements IArticleService {
 	private ArticleRepository articleRepository;
 
 	@Override
-	public Article getArticleById(long articleId) {
-		Article obj = articleRepository.findByArticleId(articleId);
+	public Article getArticleById(GetArticleByIdRequest req) {
+		Article obj = articleRepository.findByArticleId(req.getArticleId());
 		return obj;
 	}	
 	
